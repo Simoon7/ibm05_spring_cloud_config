@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ordering-service
+  kafka:
+    kafka-server: localhost:9092

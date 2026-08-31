@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: product-service
+  kafka:
+    kafka-server: localhost:9092
+    consumer:
+      # groupid는 카프카 그룹을 식별하는 ID문자, 동일한 그룹ID를 가진 컨슈머들은 메시지를 분담하여 consume
+      # 만약 여러 서비스가 다른 group-id를 가지고 있는 topic을 소비하면 각 메시지는 순차적이 아니라 각자 별도로 발생
+      # order가 kafka에게 메시지를 보내면, product가 kafka를 바라보고 있다가 메시지를 소비함, 이때 그룹id가 동일한 product가 여러개이면
+      # 그중에 다른 kafka가 메시지를 각각 분담
+      group-id: product-group
+      # 카프카내에 들어와있는 메시지중 처음들어와 있는 메시지부터 읽기시작(latest: 현시점이후로 들어오는 메시지만 read)
+      auto-offset-reset: earliest
